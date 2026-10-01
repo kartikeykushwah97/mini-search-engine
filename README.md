@@ -125,12 +125,25 @@ Snippet + Highlighting
 ## Project Structure
 
 ```text
-search_engine/
-│
-├── manage.py
-├── db.sqlite3
+mini-search-engine/
 │
 ├── crawler/
+│   ├── migrations/
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_page_links.py
+│   │   ├── 0003_page_incoming_links.py
+│   │   ├── 0004_alter_page_incoming_links.py
+│   │   ├── 0005_page_last_crawled.py
+│   │   ├── 0006_indexentry.py
+│   │   ├── 0007_indexentry_unique_word_page.py
+│   │   └── __init__.py
+│   │
+│   ├── templates/
+│   │   └── crawler/
+│   │       ├── page_detail.html
+│   │       └── page_list.html
+│   │
+│   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
 │   ├── crawler.py
@@ -138,18 +151,21 @@ search_engine/
 │   ├── models.py
 │   ├── tests.py
 │   ├── urls.py
-│   ├── migrations/
-│   └── templates/
-│       └── crawler/
-│           ├── page_detail.html
-│           └── page_list.html
+│   └── views.py
 │
-└── search_engine/
-    ├── settings.py
-    ├── urls.py
-    ├── asgi.py
-    └── wsgi.py
+├── search_engine/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── .gitignore
+├── README.md
+└── manage.py
 ```
+
+> `db.sqlite3` is used locally for development but is excluded from the Git repository through `.gitignore`.
 
 ## How It Works
 
@@ -167,7 +183,7 @@ For each HTML page, the crawler extracts:
 
 * Page title
 * Headings
-* Visible text
+* Text
 * Links
 * Anchor text
 * HTTP status code
