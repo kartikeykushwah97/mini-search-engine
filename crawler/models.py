@@ -2,7 +2,7 @@ from django.db import models
 
 class Page(models.Model):
     url = models.URLField(unique=True)
-    status_code = models.IntegerField()
+    status_code = models.IntegerField(null=True, blank=True)
     title = models.TextField(null=True, blank=True)
     headings = models.JSONField(default=list)
     text = models.TextField(blank=True)
